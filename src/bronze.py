@@ -10,7 +10,7 @@ BRONZE_DIR = "dados/bronze"
 ## Main da bronze
 def process_bronze(spark):
     try:
-        get_zip()
+        get_zip() 
         path = extract_zip()
         if path:
             save_bronze(spark, path)
@@ -24,8 +24,8 @@ def get_zip() -> None:
     os.makedirs(EXTRACT_DIR, exist_ok=True)
 
     try:
-        #Faz um get na URL de origem com stream ativado (para caso o arquivo ser grande)
-        response = requests.get(URL, stream=True)
+        #Faz um get na URL de origem
+        response = requests.get(URL) #se arquivo fosse muito grande, pode usar stream=True
         with open(FILE, 'wb') as file:
             file.write(response.content)
         print("Fonte de dados obtida com sucesso")
